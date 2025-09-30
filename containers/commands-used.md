@@ -14,7 +14,7 @@ docker compose down -v  # stop and remove container + wipe all data
 docker compose exec <service_name> env # To see the env values being passed to a service. 
 docker compose down -v --rmi all 
 docker compose build --no-cache && docker compose up -d
-
+docker system prune --all --force --volumes
 ```
 
 - PSQL related commands
@@ -40,4 +40,10 @@ npx prisma migrate reset # Reset entire database. USE ONLY IN DEVELOPMENT.
 # GPT ones:
 npx prisma db pull      # introspect schema
 npx prisma migrate dev  # run migrations
+```
+
+- Commands used with e2b
+
+``` bash
+cd sandbox-templates/nextjs && e2b template build --name web-builder-nextjs --cmd "/compile_page.sh"
 ```
