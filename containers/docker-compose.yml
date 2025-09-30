@@ -1,0 +1,15 @@
+name: web-builder
+
+services:
+  postgres:
+    build:
+      context: ./db-config/
+    container_name: web-builder-db
+    env_file: ./db-config/.env.db
+    ports:
+      - "5432:5432"
+    volumes:
+      - web-builder-db-data:/var/lib/postgresql/data
+
+volumes:
+  web-builder-db-data:

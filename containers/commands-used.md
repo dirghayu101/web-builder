@@ -1,0 +1,43 @@
+# Docker Commands Used for reference
+
+- In the config directory run: `docker compose up -d`.
+- To login to the container: `docker exec -it my_postgres psql -U admin -d myapp_db`.
+- To check schemas: `\dn`.
+- To check users: `\du`.
+- Other commands:
+
+```bash
+docker compose stop     # stop the container
+docker compose start    # start again
+docker compose down     # stop and remove container (keeps volume/data)
+docker compose down -v  # stop and remove container + wipe all data
+docker compose exec <service_name> env # To see the env values being passed to a service. 
+docker compose down -v --rmi all 
+docker compose build --no-cache && docker compose up -d
+
+```
+
+- PSQL related commands
+
+```bash
+psql -U <username> -d <dbName>
+\?          # help options.
+\du         #display user
+\l          # list databases.
+\dn         # list schemas in current database.
+```
+
+- Prisma related commands:
+
+``` bash
+# Tutorial ones:
+npx prisma init
+npx prisma db push # DO NOT USE THIS unless absolutely necessary. PAIN in the back. FOR DEVELOPMENT
+npx prisma migrate dev # USE this instead. FOR DEVELOPMENT
+npx prisma studio   # GUI for interacting with database.
+npx prisma migrate reset # Reset entire database. USE ONLY IN DEVELOPMENT.
+
+# GPT ones:
+npx prisma db pull      # introspect schema
+npx prisma migrate dev  # run migrations
+```
