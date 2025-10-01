@@ -47,3 +47,9 @@ npx prisma migrate dev  # run migrations
 ``` bash
 cd sandbox-templates/nextjs && e2b template build --name web-builder-nextjs --cmd "/compile_page.sh"
 ```
+
+- Commands used with inngest
+
+```bash
+npx inngest-cli@latest dev
+```
