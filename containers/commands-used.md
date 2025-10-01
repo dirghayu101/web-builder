@@ -21,6 +21,9 @@ docker system prune --all --force --volumes
 
 ```bash
 psql -U <username> -d <dbName>
+ALTER USER <username> WITH SUPERUSER; # Gives admin privileges to a user. Useful for prisma migrate dev command.
+ALTER ROLE <username> WITH NOSUPERUSER; # Remove the admin privileges.
+ALTER USER <username> WITH NOSUPERUSER; # Works as well.
 \?          # help options.
 \du         #display user
 \l          # list databases.
@@ -45,6 +48,7 @@ npx prisma migrate dev  # run migrations
 - Commands used with e2b
 
 ``` bash
+# You can also use this command to change the template name.
 cd sandbox-templates/nextjs && e2b template build --name web-builder-nextjs --cmd "/compile_page.sh"
 ```
 
