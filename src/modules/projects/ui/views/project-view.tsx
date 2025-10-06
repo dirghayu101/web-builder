@@ -1,8 +1,7 @@
 "use client";
 import type { Fragment } from "@/generated/prisma";
 import { useState } from "react";
-import { useTRPC } from "@/trpc/client";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { FragmentWeb } from "../components/fragment-web";
 import { MessagesContainer } from "../components/message-container";
 import { ProjectHeader } from "../components/project-header";
 import {
@@ -40,7 +39,7 @@ export const ProjectView = ({ projectId }: Props) => {
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={65} minSize={50}>
-          TODO: Preview
+          {!!activeFragment && <FragmentWeb data={activeFragment} />}
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>
