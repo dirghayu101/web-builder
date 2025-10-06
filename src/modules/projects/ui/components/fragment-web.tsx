@@ -17,9 +17,14 @@ export function FragmentWeb({ data }: Props) {
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(data.sandboxUrl);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    navigator.clipboard.writeText(data.sandboxUrl)
+    .then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    })
+    .catch(() => {
+      console.warn("Failed to copy to clipboard");
+    })
   };
 
   return (
@@ -61,6 +66,8 @@ export function FragmentWeb({ data }: Props) {
         sandbox="allow-forms allow-scripts allow-same-origin"
         loading="lazy"
         src={data.sandboxUrl}
+        title={`Fragment preview: ${data.title || data.id}`}
+        aria-label="Fragment preview"
       />
     </div>
   );
