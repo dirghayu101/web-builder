@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/resizable";
 import { Suspense } from "react";
 import { FileExplorer } from "@/components/file-explorer";
+import { UserControl } from "@/components/user-control";
 
 type Props = {
   projectId: string;
@@ -66,6 +67,7 @@ export const ProjectView = ({ projectId }: Props) => {
                     <CrownIcon /> Upgrade
                   </Link>
                 </Button>
+                <UserControl showName={false}/>
               </div>
             </div>
             <TabsContent value="preview">
