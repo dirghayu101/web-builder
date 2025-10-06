@@ -43,7 +43,7 @@ export const ProjectView = ({ projectId }: Props) => {
             />
           </Suspense>
         </ResizablePanel>
-        <ResizableHandle withHandle />
+        <ResizableHandle className="hover:bg-primary transition-colors"/>
         <ResizablePanel defaultSize={65} minSize={50}>
           <Tabs
             className="h-full gap-y-0"
@@ -74,7 +74,12 @@ export const ProjectView = ({ projectId }: Props) => {
             <TabsContent value="code" className="min-h-0">
               {!!activeFragment?.files && (
                 <FileExplorer
-                  files={activeFragment.files as { [path: string]: string }}
+                  files={
+                    activeFragment.files &&
+                    typeof activeFragment.files === "object"
+                      ? (activeFragment.files as { [path: string]: string })
+                      : {}
+                  }
                 />
               )}
             </TabsContent>
