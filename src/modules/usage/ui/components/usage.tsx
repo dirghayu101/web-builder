@@ -22,13 +22,19 @@ export const Usage = ({ points, msBeforeNext }: Props) => {
           </p>
           <p className="text-xs text-muted-foreground">
             Resets in{" "}
-            {formatDuration(
-              intervalToDuration({
-                start: new Date(),
-                end: new Date(Date.now() + msBeforeNext),
-              }),
-              { format: ["months", "days", "hours"] }
-            )}
+            {(() => {
+              try {
+                const duration = intervalToDuration({
+                  start: new Date(),
+                  end: new Date(Date.now() + Math.max(0, msBeforeNext)),
+                });
+                return formatDuration(duration, {
+                  format: ["months", "days", "hours"],
+                });
+              } catch {
+                return "soon";
+              }
+            })()}
           </p>
         </div>
         {!hasProAccess && (
