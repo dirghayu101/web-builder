@@ -14,6 +14,7 @@ import { getSandbox, lastAssistantTextMessageContent, parseAgentOutput } from ".
 import { z } from "zod";
 import { CREATE_PROMPT, FRAGMENT_TITLE_PROMPT, RESPONSE_PROMPT } from "@/prompts/prompt";
 import { prisma } from "@/lib/db";
+import { SANDBOX_TIMEOUT } from "./constant";
 
 type AgentState = {
   summary: string;
@@ -29,6 +30,7 @@ export const codeAgentFunction = inngest.createFunction(
     const sandboxId = await step.run("get-sandbox-id", async () => {
       const sandboxName: string = process.env.SANDBOX_TEMPLATE_NAME!;
       const sandbox = await Sandbox.create(sandboxName);
+      await sandbox.setTimeout(SANDBOX_TIMEOUT);  // 10 minutes.
       return sandbox.sandboxId
     })
 
@@ -39,21 +41,19 @@ export const codeAgentFunction = inngest.createFunction(
           projectId: event.data.projectId,
         },
         orderBy: {
-          // TODO: Might have to change to ASC if the context is not passing properly.
-          createdAt: "asc"
-        }
+          createdAt: "desc"
+        },
+        take: 5
       });
-      let index = 1;
       for (const message of messages) {
         formattedMessages.push({
           type: "text",
           role: message.role === "ASSISTANT" ? "assistant" : "user",
-          content: `Number ${index}: ${message.content}`,
+          content: message.content,
         })
-        index++;
       }
 
-      return formattedMessages;
+      return formattedMessages.reverse();
     });
 
     const state = createState<AgentState>(
