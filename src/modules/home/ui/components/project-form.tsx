@@ -39,14 +39,15 @@ export const ProjectForm = () => {
     trpc.projects.create.mutationOptions({
       onSuccess: (data) => {
         queryClient.invalidateQueries(trpc.projects.getMany.queryOptions());
+
+        queryClient.invalidateQueries(trpc.usage.status.queryOptions());
+
         router.push(`/projects/${data.id}`);
-        // TODO: Invalidate usage status
       },
       onError: (error) => {
         toast.error(error.message);
-        if(error.data?.code === "UNAUTHORIZED")
-          clerk.openSignIn();
-
+        if (error.data?.code === "UNAUTHORIZED") clerk.openSignIn();
+        if(error.data?.code === "TOO_MANY_REQUESTS") router.push("/pricing");
         // TODO: Redirect to pricing page if specific error
       },
     })
@@ -60,9 +61,9 @@ export const ProjectForm = () => {
 
   const onSelect = (value: string) => {
     form.setValue("value", value, {
-        shouldDirty: true,
-        shouldValidate: true,
-        shouldTouch: true,
+      shouldDirty: true,
+      shouldValidate: true,
+      shouldTouch: true,
     });
   };
 
@@ -124,20 +125,20 @@ export const ProjectForm = () => {
             </Button>
           </div>
         </form>
-      
-      <div className="flex-wrap justify-center gap-2 hidden md:flex max-w-3xl">
-        {PROJECT_TEMPLATES.map((template) => (
-          <Button
-            key={template.title}
-            variant="outline"
-            size="sm"
-            className="bg-white dark:bg-sidebar"
-            onClick={() => onSelect(template.prompt)}
-          >
-            {template.emoji} {template.title}
-          </Button>
-        ))}
-      </div>
+
+        <div className="flex-wrap justify-center gap-2 hidden md:flex max-w-3xl">
+          {PROJECT_TEMPLATES.map((template) => (
+            <Button
+              key={template.title}
+              variant="outline"
+              size="sm"
+              className="bg-white dark:bg-sidebar"
+              onClick={() => onSelect(template.prompt)}
+            >
+              {template.emoji} {template.title}
+            </Button>
+          ))}
+        </div>
       </section>
     </Form>
   );
