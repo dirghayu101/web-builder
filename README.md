@@ -1,36 +1,226 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Web Builder - AI-Powered Website Creation Platform
 
-## Getting Started
+**Build your wildest ideas with AI** - Create stunning websites by simply chatting with our intelligent assistant. No coding required!
 
-First, run the development server:
+![Web Builder Preview](./images/preview-pic-1.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Features
+
+- 🤖 **AI-Powered Development**: Chat with AI to build complete websites from any description
+- 🎨 **Unlimited Creativity**: Build any website you can imagine - no templates required
+- 🔧 **Live Code Editor**: View and edit generated code in real-time
+- 📱 **Responsive Design**: Mobile-first, responsive layouts out of the box
+- 🌙 **Dark/Light Mode**: Beautiful themes for any preference
+- 👤 **User Authentication**: Secure sign-up and project management
+- 💳 **Subscription Plans**: Flexible pricing with usage tracking
+- 🔄 **Real-time Updates**: See your changes instantly as you build
+
+## 🖼️ Screenshots
+
+### AI Chat Interface
+
+![Chat Interface](./images/preview-pic-2.png)
+
+### Live Preview & Code Editor
+
+![Code Editor](./images/preview-pic-3.png)
+
+### Project Dashboard
+
+![Dashboard](./images/preview-pic-4.png)
+
+### Template Gallery
+
+![Templates](./images/preview-pic-5.png)
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Next.js 15, React 19, TypeScript
+- **Styling**: Tailwind CSS, Shadcn/UI Components
+- **Authentication**: Clerk
+- **Database**: PostgreSQL with Prisma ORM
+- **AI Integration**: Inngest Agent Kit with OpenAI/Gemini
+- **Code Execution**: E2B Code Interpreter
+- **State Management**: TanStack Query (React Query)
+- **Forms**: React Hook Form with Zod validation
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 18+
+- PostgreSQL database
+- OpenAI API key
+- Clerk account for authentication
+
+### Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/yourusername/web-builder.git
+   cd web-builder
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+
+   ```bash
+   cp .env.example .env.local
+   ```
+
+   Fill in your environment variables:
+
+   ```env
+   DATABASE_URL="postgresql://username:password@localhost:5432/webbuilder"
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="your_clerk_publishable_key"
+   CLERK_SECRET_KEY="your_clerk_secret_key"
+   OPENAI_API_KEY="your_openai_api_key"
+   E2B_API_KEY="your_e2b_api_key"
+   INNGEST_EVENT_KEY="your_inngest_key"
+   SANDBOX_TEMPLATE_NAME="nextjs"
+   ```
+
+4. **Set up the database**
+
+   ```bash
+   npx prisma generate
+   npx prisma db push
+   ```
+
+5. **Start the development server**
+
+   ```bash
+   npm run dev
+   ```
+
+6. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 🎯 How It Works
+
+1. **Create a Project**: Sign up and start a new project with a simple prompt
+2. **Chat with AI**: Describe what you want to build in natural language
+3. **Watch Magic Happen**: Our AI agent generates complete, functional websites
+4. **Preview & Edit**: See live previews and edit the generated code
+
+## � What Can You Build?
+
+Web Builder can build **any website** you can imagine! Simply describe your idea in natural language, and watch as the AI creates a fully functional, responsive website. Here are some popular examples:
+
+- 🎬 **Netflix Clone** - Streaming platform with hero banners and movie grids
+- 📦 **Admin Dashboard** - Professional dashboards with charts and tables  
+- 📋 **Kanban Board** - Task management with drag-and-drop functionality
+- 🗂️ **File Manager** - Document organization with folder navigation
+- 📺 **YouTube Clone** - Video platform with thumbnails and categories
+- 🛍️ **E-commerce Store** - Shopping experience with cart functionality
+- 🏡 **Airbnb Clone** - Property listings with filters and modals
+- 🎵 **Spotify Clone** - Music player with playlists and controls
+
+**But that's just the beginning!** You can also create:
+
+- Portfolio websites
+- Landing pages
+- Blog platforms
+- Social media interfaces
+- Banking apps
+- Weather apps
+- Chat applications
+- And literally anything else you can describe!
+
+## 📝 Example Prompts
+
+Get creative with your descriptions! Here are some examples:
+
+- "Build a Netflix-style homepage with a hero banner and movie sections"
+- "Create an admin dashboard with sidebar, stats cards, and a data table"
+- "Make a kanban board with drag-and-drop for task management"
+- "Build an e-commerce store with product grid and shopping cart"
+- "Design a personal portfolio with dark theme and smooth animations"
+- "Create a weather app with location search and 7-day forecast"
+- "Build a social media feed with posts, likes, and comments"
+- "Make a banking dashboard with account overview and transaction history"
+- "Design a recipe sharing platform with search and categories"
+- "Create a task management app with calendar integration"
+
+**The possibilities are endless!** Just describe what you want, and the AI will build it.
+
+## 🏛️ Architecture
+
+```text
+src/
+├── app/                    # Next.js app router
+├── components/            # Reusable UI components
+├── modules/               # Feature-based modules
+│   ├── home/             # Landing page & project creation
+│   ├── projects/         # Project management & editor
+│   ├── messages/         # Chat functionality
+│   └── usage/            # Subscription & usage tracking
+├── inngest/              # AI agent functions
+├── prompts/              # AI prompts and templates
+├── trpc/                 # tRPC API setup
+└── lib/                  # Utilities and configurations
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔧 Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Database Operations
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Generate Prisma client
+npm run postinstall
 
-## Learn More
+# Apply database changes
+npx prisma db push
 
-To learn more about Next.js, take a look at the following resources:
+# View database
+npx prisma studio
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Code Quality
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# Lint code
+npm run lint
 
-## Deploy on Vercel
+# Build for production
+npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📦 Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Vercel (Recommended)
+
+1. Connect your GitHub repository to Vercel
+2. Add environment variables in Vercel dashboard
+3. Deploy automatically on every push
+
+### Docker
+
+```bash
+# Build and run with Docker Compose
+docker-compose up -d
+```
+
+## 📄 License
+
+Feel free to use, modify, and share this project however you like.
+
+## 📞 Contact
+
+**Dirghayu Joshi** - [LinkedIn](https://www.linkedin.com/in/dirghayu-joshi-b46648204/) - [GitHub](https://github.com/dirghayu101)
+
+**Project Link**: [https://github.com/dirghayu101/portfolio-guided](https://github.com/dirghayu101/web-builder)
+
+**Live Demo**: [Vercel](https://web-builder-gray-one.vercel.app/)
+
+---
+
+## 🙏 Acknowledgments
+
+- [Code with Antonio](https://www.youtube.com/@codewithantonio)
